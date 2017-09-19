@@ -13,6 +13,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
+
 import it.urial.ricobytes.core.FileManager;
 import it.urial.ricobytes.utils.Placeholders;
 import it.urial.ricobytes.utils.Scoreboard;
@@ -134,6 +136,12 @@ public class AmazingBoardAPI {
 	
 	public void scores(Player player){
 		Scoreboard sc = Scoreboard.getManager().getScoreboard(player);
+		if(Bukkit.getPluginManager().isPluginEnabled("mcMMO")){
+			if(!ScoreboardManager.isBoardShown(player.getName())){
+				ScoreboardManager.clearBoard(player.getName());
+				Scoreboard.getManager().setupBoard(player);
+			}
+		}
 		if(sc == null){
 			sc = Scoreboard.getManager().setupBoard(player);
 		}
@@ -143,7 +151,7 @@ public class AmazingBoardAPI {
 	public void setTitle(Player player){
 		try {
 			Scoreboard sc = Scoreboard.getManager().getScoreboard(player);
-			sc.setHeader(ChatColor.translateAlternateColorCodes('&', this.mainConfiguration.getStringList("Scoreboard.Title.Titles").get(titleIndex)));
+			sc.setHeader(ChatColor.translateAlternateColorCodes('&', Placeholders.addPlaceholders(player, this.mainConfiguration.getStringList("Scoreboard.Title.Titles").get(titleIndex))));
 			sc.update();
 		} catch(Exception e){
 		}
