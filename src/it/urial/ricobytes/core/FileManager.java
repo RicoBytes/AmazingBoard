@@ -122,7 +122,10 @@ public class FileManager {
     	List<String> indexes = new ArrayList<String>(scoreboards.keySet());
     	
     	scoreboards.get("example.yml").options().header("\nTHIS IS AN EXAMPLE FILE. YOU CAN COPY IT AND PASTE WITH ANOTHER NAME AND SET ANOTHER SCOREBOARD.\nREMEMBER: 20 TICKS ARE 1 SECOND!\n");
-    	
+
+    	if(!scoreboards.get("example.yml").contains("Scoreboard.Disabled Worlds")){
+    		scoreboards.get("example.yml").set("Scoreboard.Disabled Worlds", Arrays.asList("world1", "world2"));
+    	}
     	if(!scoreboards.get("example.yml").contains("Scoreboard.Title.Delay in Ticks")){
     		scoreboards.get("example.yml").set("Scoreboard.Title.Delay in Ticks", 10);
     	}

@@ -192,7 +192,13 @@ public class AmazingBoardAPI {
 			@Override
 			public void run(){
 				for(Player players : Bukkit.getOnlinePlayers()){
-					scores(players);
+					if(mainConfiguration.getStringList("Scoreboard.Disabled Worlds").contains(players.getWorld().getName())){
+						if(Scoreboard.getManager().getScoreboard(players) != null){
+							Scoreboard.disband(players);
+						}
+					} else {
+						scores(players);
+					}
 				}
 			}
 		}.runTaskTimer(plugin, mainConfiguration.getInt("Scoreboard.Scores.Delay in Ticks"), mainConfiguration.getInt("Scoreboard.Scores.Update in Ticks"));

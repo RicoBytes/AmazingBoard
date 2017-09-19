@@ -45,9 +45,9 @@ public class AmazingBoard extends JavaPlugin {
 		}
 		Bukkit.getConsoleSender().sendMessage("§aAPI Enabled: §a" + FileManager.config.getBoolean("API Enabled"));
 		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("§f§oMade by RicoBytes (c) BlazeFlare 2017");
+		Bukkit.getConsoleSender().sendMessage("§f§oMade by RicoBytes (c) Urial 2017");
 		Bukkit.getConsoleSender().sendMessage("§a##################################");
-
+		
 		Scoreboard.getManager().start();
 		
 		Scoreboard.getManager().resetTeams();
